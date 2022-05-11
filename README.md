@@ -1,3 +1,5 @@
+nvm use 12.14.1
+npm install
 # PasaporteFront
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
