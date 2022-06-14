@@ -1,10 +1,11 @@
+<app-nav-bar></app-nav-bar>
 <div class="container-fluid">
     <h1 class="text-center">Consulta de citas</h1>
-  <h4>Citas: &lt;nombreUsuario&gt;</h4>
+  <h4>Citas: {{userLogin.name}} {{userLogin.first_surname}}</h4>
   <div style=" margin-top: 2em; margin-bottom: 1em;">
     <button type="button" class="btn  btn-outline-secondary">Citas actuales</button> 
     <button type="button" class="btn  btn-outline-secondary">Historial de citas</button>
-    <button routerLink ="cita"  type="button" class="btn btn-outline-danger" style="float: right;">Programar cita</button>
+    <button routerLink ="/cita" type="button" class="btn btn-outline-danger" style="float: right;">Programar cita</button>
   </div>
   
 
@@ -25,3 +26,6 @@
     </table>
   </div>
 </div>
+
+
+

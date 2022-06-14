@@ -3,41 +3,36 @@
 
   <div class="row justify-content-md-center margen" >
     <div class="col-md-auto">
-      <div class="dropdown d-inline-block">
-        <button
-          class="btn btn-outline-dark dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Selecciona el estado...
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Selecciona el estado...</option>
+        <option value="1">Vercruz</option>
+        
+      </select>
     </div>
     <div class="col-md-auto">
-      <div class="dropdown d-inline-block">
-        <button
-          class="btn btn-outline-dark dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Selecciona la oficina...
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>selecciona la oficina...</option>
+        <option value="1">Xalapa</option>
+        <option value="2">Veracruz</option>
+        <option value="3">Cordoba</option>
+
+        
+      </select>
     </div>
+    <div class="row justify-content-md-center margen" >
+      <div class="col-md-5">
+        <div class="input-group ">
+          <input
+            type="text"
+            style="text-transform: uppercase"
+            class="form-control"
+            placeholder="Ingresa tu CURP"
+            aria-label="Ingresa tu CURP"
+          />
+        </div>
+      </div>
+      
+      </div>
     <div class="row justify-content-md-center margen" >
       <div class="col-md-auto">
         <button routerLink="" type="button" class="btn btn-outline-danger">

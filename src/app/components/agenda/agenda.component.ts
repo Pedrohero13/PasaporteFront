@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
+
 
 @Component({
   selector: 'app-agenda',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent implements OnInit {
-
-  constructor() { }
+  usuers = [];
+  constructor(private usersService : UsersService) { }
 
   ngOnInit(): void {
+
   }
 
 }

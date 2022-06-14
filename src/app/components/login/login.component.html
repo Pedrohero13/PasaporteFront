@@ -15,6 +15,7 @@
     <div class="input-group p-2">
       <input
         type="email"
+        [(ngModel)]="email"
         class="form-control"
         placeholder="Correo electroníco"
         aria-label="Correo electroníco"
@@ -23,6 +24,7 @@
     <div class="input-group p-2">
       <input
         type="password"
+        [(ngModel)]="password"
         class="form-control"
         placeholder="Contraseña"
         aria-label="password"
@@ -42,17 +44,17 @@
     <div class="row justify-content-center" style="margin-top: 1em;">
       <div class="col-4">
         
-          <button type="button" class="btn btn-outline-success">
+          <button  type="button" class="btn btn-outline-success" routerLink="/sing-in">
             Crear cuenta
           </button>
         
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-outline-danger">
+        <button (click)="login()" type="button" class="btn btn-outline-danger">
           Ingresar
         </button>
       </div>
-      <a class="text-center" routerLink=""><br>Olvidaste tu contraseña</a>
+      
     </div>
   </div>
 </div>

@@ -13,6 +13,12 @@ import { OficinaComponent } from './components/oficina/oficina.component';
 import { DocumentosComponent } from './components/documentos/documentos.component';
 import { AgendaComponent } from './components/agenda/agenda.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { CrearCuentaComponent } from './components/crear-cuenta/crear-cuenta.component';
+
+
+import { CookieService } from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +31,18 @@ import { AgendaComponent } from './components/agenda/agenda.component';
     OficinaComponent,
     DocumentosComponent,
     AgendaComponent,
+    CrearCuentaComponent,
+    
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
