@@ -5,8 +5,9 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { CookieService } from 'ngx-cookie-service';
-import { UserLogin } from '../userLogin';
-import { UserAPI } from '../user-api';
+import { UserLogin } from '../models/userLogin';
+import { UserAPI } from '../models/user-api';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +34,7 @@ export class UsersService {
     this.cookies.set("token", token);
   }
   getToken() {
-    return this.cookies.get("token");
+    return this.cookies.get("token");  
   }
 
   getUserToken(token: string) {

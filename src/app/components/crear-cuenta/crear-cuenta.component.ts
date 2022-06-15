@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -24,6 +26,8 @@ export class CrearCuentaComponent implements OnInit {
   nationality: string = "Mexicana"
   telephone: string = "12345678"
   optional_telephone: string = "12345678"
+
+  checkSeleccionado: boolean = false
 
   constructor(private userService: UsersService, public router: Router) { }
 
@@ -53,10 +57,28 @@ export class CrearCuentaComponent implements OnInit {
     this.userService.register(user).subscribe(data => {
       const user = { email: this.email, password: this.password };
       this.userService.login(user).subscribe(data => {
-        this.userService.setToken(data.token);
-        this.router.navigateByUrl('/');
+        timer(1000).subscribe(x => { this.router.navigateByUrl('/'); })
+        this.userService.setToken(data.user.id);
+        Swal.fire({
+          position: 'top-right',
+          icon:'success',
+          title: 'La cita a sido creada '+ data,
+          showConfirmButton: false,
+          timer: 1000
+        })
+        
       });
     });
+  }
+
+  onChange(event: any) {
+    if (!this.checkSeleccionado) {
+      this.checkSeleccionado = true
+    }
+    else {
+      this.checkSeleccionado = false
+    }
+
   }
 
 }

@@ -1,18 +1,18 @@
-<div class="row justify-content-around" style="margin-top: 5em">
-    <div class="col-sm-6">
+<div class="row justify-content-center" style="margin-top: 5em">
+    <div class="col-md-6">
       <img
         src="../../assets/img/logo.png"
         class="d-block w-100"
         alt="Pico"
-        width="50"
+        width="600"
         height="436"
       />
     </div>
     
-    <div class="col-sm-4">
+    <div class="col-md-4">
       
-      <h1 class="text-center">Crear cuenta</h1>
-      <div class="input-group p-2">
+      <h3 class="text-center">Crear cuenta</h3>
+      <div class="form-group">
         <input
           type="text"
           [(ngModel)]="name"
@@ -21,7 +21,7 @@
           aria-label="Nombre"
         />
       </div>
-      <div class="input-group p-2">
+      <div class="form-group">
         <input
           type="text"
           [(ngModel)]="first_surname"
@@ -30,7 +30,7 @@
           aria-label="Apellido paterno"
         />
       </div>
-      <div class="input-group p-2">
+      <div class="form-group">
         <input
           type="text"
           [(ngModel)]="second_surname"
@@ -39,7 +39,7 @@
           aria-label="Apellido naterno"
         />
       </div>
-      <div class="input-group p-2">
+      <div class="form-group">
         <input
           type="email"
           [(ngModel)]="email"
@@ -48,7 +48,7 @@
           aria-label="Correo electroníco"
         />
       </div>
-      <div class="input-group p-2">
+      <div class="form-group">
         <input
             type="password"
             [(ngModel)]="password"
@@ -57,7 +57,7 @@
             aria-label="password"
         />
       </div>
-      <div class="input-group p-2">
+      <div class="form-group">
         <input
           type="password"
           [(ngModel)]="confirmPassword"
@@ -72,6 +72,8 @@
           type="checkbox"
           value=""
           id="flexCheckChecked"
+          [checked] = "checkSeleccionado" 
+          (change) = "onChange($event)"
         />
         <label class="form-check-label" for="flexCheckChecked">
           He leido y acepto los <a routerLink="">terminos y condiciones.</a>
@@ -80,12 +82,12 @@
       <div class="row justify-content-center" style="margin-top: 1em;">
         
         <div class="col-4">
-          <button  (click)="register()" type="button" class="btn btn-outline-danger">
+          <button  [disabled]="! checkSeleccionado" (click)="register()" type="button" class="btn btn-primary">
             Registrarse
           </button>
         </div>
         <p class="text-center" ><br>Ya tienes una cuenta? </p>
-        <a class="text-center" routerLink="/login" >Inicia sesion aquí</a>
+        <a routerLink="/login" ><p class="text-center">Inicia sesion aquí<p></a>
       </div>
     </div>
   </div>

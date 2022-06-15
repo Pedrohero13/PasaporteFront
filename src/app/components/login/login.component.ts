@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import Swal from 'sweetalert2';  
- 
+import Swal from 'sweetalert2';
+
 
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,32 +13,45 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email: string="";
-  password: string="";
-  
+  email: string = "";
+  password: string = "";
+  checkSeleccionado: boolean = false
   constructor(private userService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
+    this.userService.SignOff()
   }
   login() {
-    const user = {email: this.email, password: this.password};
-    this.userService.login(user).subscribe( data => {
+    const user = { email: this.email, password: this.password };
+    this.userService.login(user).subscribe(data => {
       this.userService.setToken(data.user.id);
+
+      timer(1000).subscribe(x => { this.router.navigateByUrl('/'); })
+
       Swal.fire({
-        position: 'top-end',
+        position: 'top-right',
         icon: 'success',
-        title: 'Login exitoso',
+        title: 'Inicio de Sesion como: '+ data.user.name,
         showConfirmButton: false,
         timer: 1000
       })
-      
-      this.router.navigateByUrl('/');
+
+
     },
-    error => {
-      console.log(error);
-    });
-    
+      error => {
+        console.log(error);
+      });
+
+  }
+  onChange(event: any) {
+    if (!this.checkSeleccionado) {
+      this.checkSeleccionado = true
+    }
+    else {
+      this.checkSeleccionado = false
+    }
+
   }
 
- 
+
 }
