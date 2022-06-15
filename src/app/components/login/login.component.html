@@ -1,58 +1,53 @@
-<div class="row justify-content-around" style="margin-top: 5em">
-  <div class="col-sm-6">
+<div class="row " style="margin-top: 5em">
+  <div class="col-md-6">
     <img
       src="../../assets/img/logo.png"
       class="d-block w-100"
       alt="Pico"
-      width="50"
+      width="600"
       height="436"
     />
   </div>
   
-  <div class="col-sm-4">
+  <div class="col-md-4">
+    <div *ngif = "!showAlert" class="alert alert-success">Login exitoso.</div>
+
+    <h2 class="text-center">Iniciar Sesión</h2>
+    <div class="form-group">
+      <label class="control-label" for="email-01">Correo electrónico:</label>
+      <input class="form-control" [(ngModel)]= "email" id="email-01" placeholder="Correo electrónico" type="text">
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="password-01">Contraseña</label>
+      <input class="form-control" [(ngModel)]= "password" id="password-01" placeholder="Contraseña" type="password">
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="checkbox">
+        <label   class="form-check-label" for="flexCheckChecked">
+          <input [checked] = "checkSeleccionado" 
+          (change) = "onChange($event)" value = "One" type="checkbox">
+          He leido y acepto los <a routerLink="">terminos y condiciones.</a>
+        </label>
+      </div>
+      
+      
+    </div>
     
-    <h1 class="text-center">Iniciar Sesión</h1>
-    <div class="input-group p-2">
-      <input
-        type="email"
-        class="form-control"
-        placeholder="Correo electroníco"
-        aria-label="Correo electroníco"
-      />
-    </div>
-    <div class="input-group p-2">
-      <input
-        type="password"
-        class="form-control"
-        placeholder="Contraseña"
-        aria-label="password"
-      />
-    </div>
-    <div class="form-check"style="margin-top: 1em; margin-left : 3em;">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value=""
-        id="flexCheckChecked"
-      />
-      <label class="form-check-label" for="flexCheckChecked">
-        He leido y acepto los <a routerLink="">terminos y condiciones.</a>
-      </label>
-    </div>
     <div class="row justify-content-center" style="margin-top: 1em;">
-      <div class="col-4">
+      <div class="col-md-6">
         
-          <button type="button" class="btn btn-outline-success">
+          <button  type="button" class="btn btn-default" routerLink="/sing-in">
             Crear cuenta
           </button>
         
       </div>
-      <div class="col-4">
-        <button type="button" class="btn btn-outline-danger">
+      <div class="col-md-6">
+        <button [disabled]="! checkSeleccionado" (click)="login()" type="button" class="btn btn-primary">
           Ingresar
         </button>
       </div>
-      <a class="text-center" routerLink=""><br>Olvidaste tu contraseña</a>
+      
     </div>
   </div>
 </div>

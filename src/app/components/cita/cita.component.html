@@ -1,13 +1,95 @@
-<nav class="d-flex justify-content-center" >
-    <div  class="nav nav-tabs" id="nav-tab" role="tablist">
-      <button  [ngClass]="{ 'active':activeTab==='oficina'}" (click)="cambiar('oficina')" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Oficina</button>
-      <button  [ngClass]="{ 'active':activeTab==='documentos'}" (click)="cambiar('documentos')"
-       class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Documentos</button>
-      <button [ngClass]="{ 'active':activeTab==='agenda'}" (click)="cambiar('agenda')" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Agenda</button>
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <ul class="nav nav-tabs">
+      <li [ngClass]="{ ' active':activeTab==='oficina'}" id="tad1" (click)="changeTab('oficina')"><a data-toggle="tab" href="#tab-01" >Oficina</a></li>
+      <li [ngClass]="{ ' active':activeTab==='documentos'}" d="tad2"(click)="changeTab('documentos')"><a data-toggle="tab"  href="#tab-02">Documentos</a></li>
+      <li [ngClass]="{ ' active':activeTab==='agenda'}" id="tad3"(click)="changeTab('agenda')"><a data-toggle="tab" href="#tab-03" >Agenda</a></li>
+    </ul>
+    <div class="tab-content">
+      <div [ngClass]="{ ' active':activeTab==='oficina'}"   class="tab-pane " id="tab-01">
+        <div class="row ">
+          <div class="col">
+            <h2 class="text-center">Ubicacion de la Oficina</h2>
+            <select [(ngModel)] = "state" class="form-control" aria-label="Default select example">
+              <option selected>Selecciona el estado...</option>
+              <option value="1">Vercruz</option>
+
+            </select>
+          </div>
+          <div class="col">
+            <select  [(ngModel)] = "office" class="form-control" aria-label="Default select example">
+              <option selected>selecciona la oficina...</option>
+              <option value="1">Xalapa</option>
+              <option value="2">Veracruz</option>
+              <option value="3">Cordoba</option>
+
+
+            </select>
+          </div>
+
+          <div class="col">
+            <div class="form-group ">
+              <input [(ngModel)] = "curp" type="text" style="text-transform: uppercase" class="form-control" placeholder="Ingresa tu CURP"
+                aria-label="Ingresa tu CURP" />
+            </div>
+          </div>
+          <button (click)="changeTab('documentos')"data-toggle="tab" href="#tab-02" class="btn btn-primary" style="margin-top: 1em;">Continuar </button>
+
+        </div>
+
+      </div>
+      <div [ngClass]="{ ' active':activeTab==='documentos'}"  class="tab-pane" id="tab-02">
+        <div class="row ">
+          <h2 class="text-center">Subir documentos</h2>
+          <div class="col-md-10">
+            <span class="control-fileupload">
+              <label for="fileInput">Documento de identidad :</label>
+              <input  type="file" id="fileInput" (change)="onFileChange($event)">
+              <button class="btn btn-primary" style="margin-top: 1em;" (click)="onUploadDocumentIdentity()">subir </button>
+            </span>
+          </div>
+          <div class="col-md-10">
+            <span class="control-fileupload">
+              <label for="fileInput" style="margin-top: 2em;">Documento de nacionalidad :</label>
+              <input  type="file" id="fileInput" (change)="onFileChange($event)">
+              <button class="btn btn-primary" style="margin-top: 1em;" (click)="onUploadDocumentNacionality()">subir </button>
+            </span>
+          </div>
+
+        </div>
+        <button (click)="changeTab('agenda')" data-toggle="tab" href="#tab-03" class="btn btn-primary" style="margin-top: 1em;">Continuar </button>
+
+
+      </div>
+
+      <div [ngClass]="{ ' active':activeTab==='agenda'}"  class="tab-pane" id="tab-03">
+        <div class="row ">
+
+          <div class="col-md-10">
+            <mat-form-field>
+              <mat-label>Fecha para la cita:</mat-label>
+              <input  id="date"   matInput [matDatepicker]="picker">
+              <mat-hint>YYYY/MM/DD</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+
+
+
+            <label class="control-label" for="appt" style="margin-top: 3em;">Hora para la cita: </label>
+            <input  [(ngModel)] = "time"type="time" id="appt" name="appt" min="09:00" max="18:00" required value="12:00">
+          </div>
+
+
+        </div>
+        <button  class="btn btn-primary" style="margin-top: 1em;" (click)= "onCreateAponitment()">Guardar </button>
+
+      </div>
+
     </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div [ngClass]="{ 'show active':activeTab==='oficina'}" class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><app-oficina></app-oficina></div>
-    <div [ngClass]="{ 'show active':activeTab==='documentos'}" class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"><app-documentos></app-documentos></div>
-    <div [ngClass]="{ 'show active':activeTab==='agenda'}" class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"><app-agenda></app-agenda></div>
   </div>
+</div>

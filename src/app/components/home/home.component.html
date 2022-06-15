@@ -1,10 +1,11 @@
+<app-nav-bar></app-nav-bar>
 <div class="container-fluid">
     <h1 class="text-center">Consulta de citas</h1>
-  <h4>Citas: &lt;nombreUsuario&gt;</h4>
+  <h2 >Citas: {{userLogin.name}} {{userLogin.first_surname}}</h2>
   <div style=" margin-top: 2em; margin-bottom: 1em;">
-    <button type="button" class="btn  btn-outline-secondary">Citas actuales</button> 
-    <button type="button" class="btn  btn-outline-secondary">Historial de citas</button>
-    <button routerLink ="cita"  type="button" class="btn btn-outline-danger" style="float: right;">Programar cita</button>
+    <button type="button" class="btn  btn-default "(click)= "getapointmentsStatusTrue()">Citas actuales</button> 
+    <button type="button" class="btn  btn-default">Historial de citas</button>
+    <button routerLink ="/cita" type="button" class="btn btn-primary" style="float: right;">Programar cita</button>
   </div>
   
 
@@ -21,7 +22,21 @@
           <th scope="col">ESTATUS</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <tr *ngFor="let appointment of appointmentsList; let i = index">
+          <td>{{appointment.date}}</td>
+          <td>{{appointment.time}}</td>
+          <td>{{appointment.id}}</td>
+          <td>{{appointment.name}}</td>
+          <td>{{appointment.office}}</td>
+          <td>{{appointment.tramite}}</td>
+          <td>{{appointment.status}}</td>
+
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>
+
+
+
