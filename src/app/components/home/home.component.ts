@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   arratAux : any;
   appointmentsList = new Array();
   
-  userLogin: any;
+  userLogin: any | null = null;
   token : string = ""
   constructor(private userService: UsersService, private router: Router, private apointmentService: AppointmentService) { }
   
@@ -24,10 +24,10 @@ export class HomeComponent implements OnInit {
     this.token = this.userService.getToken();
     if(this.token){
       this.userService.getUserToken(this.token).subscribe(user => {
-        console.log(user)
         this.userLogin = user
-
+        this.getapointmentsStatusTrue()
       });
+      
     }
     else{
       this.router.navigateByUrl('/login');
@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   getapointmentsStatusTrue(){
+
     this.apointmentService.getApointments(this.token).subscribe(data=>{
       this.arratAux = data;
 
@@ -44,13 +45,17 @@ export class HomeComponent implements OnInit {
           office: elemento.office,
           date:  elemento.date,
           time:  elemento.time,
-          status:   elemento.status,
-          tramite: "Passport",
+          status:   elemento.status? "Activa":"Desactivada",
+          papeport: elemento.office_paperwork,
           name : this.userLogin.name
         }
+
         this.appointmentsList.push(dataTable)
       })
     })
   }
+  
+
+  
 
 }

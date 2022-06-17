@@ -8,14 +8,14 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  userLogged :any = null
+  userLogin :any | null = null
   token: string = ""  
   constructor(private userService: UsersService, private router: Router) { 
     
   }
   ngOnInit(): void {
     this.userService.getUserToken(this.userService.getToken()).subscribe(user =>{
-      this.userLogged = user
+      this.userLogin = user
     })  
   } 
  

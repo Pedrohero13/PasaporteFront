@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       Swal.fire({
         position: 'top-right',
         icon: 'success',
-        title: 'Inicio de Sesion como: '+ data.user.name,
+        title: 'Inicio de Sesion como: '+ data.user.curp,
         showConfirmButton: false,
         timer: 1000
       })

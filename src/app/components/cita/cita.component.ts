@@ -12,13 +12,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./cita.component.css']
 })
 export class CitaComponent implements OnInit {
+  
+  userLogin: any | null = null;
+  token : string = ""
+
   activeTab = 'oficina';
   fileToUpload: File | null = null;
   id_user: number = 0
   state: string = ""
   office: string = ""
   curp: string = ""
-  office_paperwork: string = ""
+  office_paperwork: string = "Pasaporte"
   identification_document: string = ""
   identification_document_url: string = ""
   nationality_document: string = ""
@@ -27,13 +31,27 @@ export class CitaComponent implements OnInit {
   time: string = ""
   status: boolean = true
 
+  urlIdentification = "http://34.94.79.113:9090/api/documents/identification/file/"
+
   constructor(private apointmentService: AppointmentService, private userService: UsersService, private router: Router) { }
 
 
   ngOnInit(): void {
-
+    this.getUserLogeed()
   }
-
+  getUserLogeed(){
+    this.token = this.userService.getToken();
+    if(this.token){
+      this.userService.getUserToken(this.token).subscribe(user => {
+        this.userLogin = user
+        
+      });
+      
+    }
+    else{
+      this.router.navigateByUrl('/login');
+    }
+  }
   changeTab(activeTab: any) {
     this.activeTab = activeTab;
   }
@@ -136,6 +154,27 @@ export class CitaComponent implements OnInit {
     if (event.target.files.length > 0) {
       let files: FileList = event.target.files;
       this.fileToUpload  = files[0];
+    
     }
   }
+
+  onSwalConfirment(){
+    Swal.fire({
+      title: 'Estas seguro que deseas guardar esta cita?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `No guardar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.onCreateAponitment()
+        Swal.fire('Guardado!', '', 'success')
+      } else if (result.isDenied) {
+        timer(1000).subscribe(x => { this.router.navigateByUrl('/'); })
+        Swal.fire('No se a guardado', '', 'info')
+      }
+    })
+  }
+ 
 }
