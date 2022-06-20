@@ -23,6 +23,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
+
+import { MqttModule, IMqttServiceOptions } from "ngx-mqtt";
+export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: '34.125.103.25',
+  port: 8083,
+  path: '/mqtt'
+}
 const MY_DATE_FORMAT = {
   parse: {
     dateInput: 'YYYY-MM-DD', // this is how your date will be parsed from Input
@@ -54,7 +62,8 @@ const MY_DATE_FORMAT = {
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
 
   ],
   providers: [

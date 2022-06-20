@@ -29,4 +29,8 @@ export class AppointmentService {
    formParams.append('file', file)
     return this.httpClient.post("http://34.94.79.113:9090/api/documents/nationality/upload"   , formParams);
   }
+
+  getIdentityDocument(name: string): Observable<any> {
+    return this.httpClient.get("http://34.94.79.113:9090/api/documents/identification/file/"+name);
+  }
 }

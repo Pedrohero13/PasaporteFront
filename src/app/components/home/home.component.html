@@ -1,16 +1,16 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid">
     <h1 class="text-center">Consulta de citas</h1>
-  <h2 >Citas: {{userLogin.name}} {{userLogin.first_surname}}</h2>
+  <h2 *ngIf="userLogin">Citas: {{userLogin.email}} </h2>
   <div style=" margin-top: 2em; margin-bottom: 1em;">
-    <button type="button" class="btn  btn-default "(click)= "getapointmentsStatusTrue()">Citas actuales</button> 
-    <button type="button" class="btn  btn-default">Historial de citas</button>
     <button routerLink ="/cita" type="button" class="btn btn-primary" style="float: right;">Programar cita</button>
   </div>
   
 
-  <div class="table-responsive">
-    <table class="table">
+  <div class="table-responsive ">
+
+    <table class="table caption-top">
+      <caption><h2>Citas actuales</h2></caption>
       <thead>
         <tr>
           <th scope="col">FECHA</th>
@@ -23,14 +23,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let appointment of appointmentsList; let i = index">
+        <tr id = "registre" *ngFor="let appointment of appointmentsList; let i = index">
           <td>{{appointment.date}}</td>
           <td>{{appointment.time}}</td>
           <td>{{appointment.id}}</td>
           <td>{{appointment.name}}</td>
           <td>{{appointment.office}}</td>
-          <td>{{appointment.tramite}}</td>
-          <td>{{appointment.status}}</td>
+          <td>{{appointment.papeport}}</td>
+          <td class="text-success"><b>{{appointment.status}}</b></td>
 
         </tr>
       </tbody>
