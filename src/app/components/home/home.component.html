@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid">
     <h1 class="text-center">Consulta de citas</h1>
-  <h2 style="text-transform: uppercase" *ngIf="userLogin">Citas: {{userLogin.curp}} </h2>
+  <h2 *ngIf="userLogin">Citas: {{userLogin.email}} </h2>
   <div style=" margin-top: 2em; margin-bottom: 1em;">
     <button routerLink ="/cita" type="button" class="btn btn-primary" style="float: right;">Programar cita</button>
   </div>

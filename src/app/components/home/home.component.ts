@@ -41,13 +41,13 @@ export class HomeComponent implements OnInit {
 
       this.arratAux.map((elemento : any) =>{
         const dataTable  = {
-          id:  elemento.id,
+          id: elemento.id,
           office: elemento.office,
-          date:  elemento.date,
-          time:  elemento.time,
-          status:   elemento.status? "Activa":"Desactivada",
-          papeport: elemento.office_paperwork,
-          name : this.userLogin.name
+          date: elemento.date,
+          time: elemento.time,
+          status: elemento.status? "Activa":"Desactivada",
+          papeport: elemento.office_paperwork?  elemento.office_paperwork:"Pasaporte" ,
+          name: elemento.name
         }
 
         this.appointmentsList.push(dataTable)

@@ -2,4 +2,9 @@
     margin-top: 8px;
     margin-bottom: 5px;
 }
-.col-md-4{margin-top: 6em;}
+.col-md-6{margin-top: 6em;}
+
+.noclick {
+    pointer-events:none; 
+    opacity:0.6;         
+}
